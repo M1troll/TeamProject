@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ccb7cfe-9f33-429d-93e7-762f76cce1f2" name="Default Changelist" comment="" />
+    <list default="true" id="4ccb7cfe-9f33-429d-93e7-762f76cce1f2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/heartbits/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/heartbits/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/views.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,6 +87,7 @@
       <workItem from="1615468306930" duration="13749000" />
       <workItem from="1615557039078" duration="54000" />
       <workItem from="1615557099215" duration="163000" />
+      <workItem from="1615652186609" duration="1146000" />
     </task>
     <servers />
   </component>
@@ -89,6 +104,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="526" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1615473746744">

@@ -16,6 +16,6 @@ def register(request):
                 userdata.save()
                 form.clean()
                 return HttpResponseRedirect('index/index.html')
-    else:
+    if request.method == 'GET':
         form = RegisterUserForm()
-        return render(request, 'register/register.html', {'reg_form': form})
+        return render(request, 'register/register.html', context={'reg_form': form})

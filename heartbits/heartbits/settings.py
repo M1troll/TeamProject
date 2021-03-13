@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'heartbits_app'
+    'heartbits_app',
+    'register',
 ]
 
 MIDDLEWARE = [
