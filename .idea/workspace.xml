@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1396562-da96-4801-8192-278dd789a765" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/heartbits/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/heartbits/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/heartbits/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/heartbits/heartbits_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/heartbits/heartbits_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/heartbits/heartbits_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/heartbits/heartbits_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +41,7 @@
       <updated>1615557262127</updated>
       <workItem from="1615557263261" duration="512000" />
       <workItem from="1615557934751" duration="3183000" />
-      <workItem from="1615623075193" duration="4862000" />
+      <workItem from="1615623075193" duration="5915000" />
     </task>
     <servers />
   </component>
