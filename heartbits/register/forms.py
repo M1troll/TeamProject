@@ -16,7 +16,6 @@ class RegisterUserForm(forms.ModelForm):
         help_text="Введите такой же пароль для подтверждения.",
     )
     field_order = ['username', 'password', 'password2']
-
     class Meta:
         model = User
         exclude = ['date_register', 'last_online', 'is_blocked', 'coefficient', 'coef_range_max', 'coef_range_min',
