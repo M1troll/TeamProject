@@ -40,7 +40,7 @@ class User(models.Model):
     email = models.EmailField('E-mail')
     first_name = models.CharField('Имя', max_length=150)
     last_name = models.CharField('Фамилия', max_length=150)
-    age = models.PositiveSmallIntegerField('Возраст')
+    birthday = models.DateField('День рождения', default=date.today)
     sex = models.CharField('Пол', choices=SEX, max_length=2, default=SEX[2])
     user_country = models.CharField('Страна', max_length=100)
     user_city = models.CharField('Город', max_length=100)
