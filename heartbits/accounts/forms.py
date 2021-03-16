@@ -16,10 +16,27 @@ class RegisterUserForm(forms.ModelForm):
         help_text="Введите такой же пароль для подтверждения.",
     )
     field_order = ['username', 'password', 'password2']
+
     class Meta:
         model = User
         exclude = ['date_register', 'last_online', 'is_blocked', 'coefficient', 'coef_range_max', 'coef_range_min',
-                  'test', 'status', 'display_status']
+                   'test', 'status', 'display_status', 'is_active', 'is_staff', 'is_superuser', 'user_permissions',
+                   'groups']
         widgets = {
             'birthday': forms.SelectDateWidget(years=range(date.today().year - 50, date.today().year), attrs={'class': 'form-control'}),
+        }
+
+
+class LoginUserForm(forms.ModelForm):
+    password = forms.CharField(
+        max_length=24,
+        label='Введите пароль',
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Введите пароль'}),
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'})
         }
