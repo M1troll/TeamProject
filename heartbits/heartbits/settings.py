@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'heartbits_app',
-    'register',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -99,6 +99,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'heartbits_app.User'
+LOGIN_REDIRECT_URL = 'heartbits_app.index'
+LOGOUT_REDIRECT_URL = 'heartbits_app.index'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -121,3 +125,4 @@ STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
