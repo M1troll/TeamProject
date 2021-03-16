@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/regform.css' %}">
     <title>Registration</title>
 </head>
-<body>
-    <form action="{% url 'register' %}" enctype="multipart/form-data" method="post">
-        {% csrf_token %}
-        {{ reg_form.as_p }}
-        <button type="submit">Register</button>
-    </form>
+<div class="container">
+    <div id="header">шапка сайта</div>
+        <div>
+            <form id="regform" action="{% url 'register' %}" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button class="glow-button" type="submit">Register</button>
+
+            </form>
+        </div>
+    <div id="footer">низ сайта</div>
+</div>
 </body>
 </html>
