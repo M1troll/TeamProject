@@ -7,7 +7,7 @@
 <body>
     <form action="{% url 'register' %}" enctype="multipart/form-data" method="post">
         {% csrf_token %}
-        {{ reg_form.as_p }}
+        {{ form.as_p }}
         <button type="submit">Register</button>
     </form>
 </body>
