@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" action="{% url 'index' %}">
+        <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" content="Log In">

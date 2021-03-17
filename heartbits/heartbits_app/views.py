@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 
 
 def index(request):
-    return render(request, 'index/index.html')
+    user = request.user
+    return render(request, 'index/index.html', context={'user': user})
 
 

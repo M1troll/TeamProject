@@ -100,8 +100,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'heartbits_app.User'
-LOGIN_REDIRECT_URL = 'heartbits_app.index'
-LOGOUT_REDIRECT_URL = 'heartbits_app.index'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

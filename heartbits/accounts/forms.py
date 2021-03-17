@@ -24,7 +24,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 #                    'test', 'status', 'display_status', 'is_active', 'is_staff', 'is_superuser', 'user_permissions',
 #                    'groups']
 #         widgets = {
-#             'birthday': forms.SelectDateWidget(years=range(date.today().year - 50, date.today().year), attrs={'class': 'form-control'}),
+#             'birthday': forms.SelectDateWidget(years=range(date.today().year - 50, date.today().year),
+#             attrs={'class': 'form-control'}),
 #         }
 
 
@@ -62,7 +63,8 @@ class MyUserCreationForm(UserCreationForm):
         fields = ['username', 'password1', 'password2', 'email', 'first_name', 'last_name', 'birthday', 'sex',
                   'user_country', 'user_city', 'user_description', 'user_image', 'user_url']
         widgets = {
-                    'birthday': forms.SelectDateWidget(years=range(date.today().year - 50, date.today().year), attrs={'class': 'form-control'}),
+                    'birthday': forms.SelectDateWidget(years=range(date.today().year - 50, date.today().year),
+                                                       attrs={'class': 'form-control'}),
                 }
 
 

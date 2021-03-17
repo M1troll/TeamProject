@@ -6,6 +6,7 @@ from .forms import MyUserCreationForm, MyUserChangeForm, LoginUserForm
 from heartbits_app.models import User
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth.views import LoginView, LogoutView
 
 # Create your views here.
 
@@ -15,6 +16,16 @@ class SignUp(generic.CreateView):
     form_class = MyUserCreationForm
     success_url = reverse_lazy('index')
     template_name = 'accounts/register.html'
+
+
+class Login(LoginView):
+    template_name = 'accounts/login.html'
+    redirect_authenticated_user = True
+
+
+class Logout(LogoutView):
+    next_page = 'index'
+    template_name = 'accounts/logout.html'
 
 
 def login(request):
