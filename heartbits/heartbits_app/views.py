@@ -6,6 +6,6 @@ from django.http import HttpResponseRedirect
 
 def index(request):
     user = request.user
-    return render(request, 'index/index.html', context={'user': user})
+    return render(request, 'main/main.html', context={'user': user})
 
 

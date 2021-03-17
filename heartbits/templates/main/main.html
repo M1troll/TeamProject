@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/mainform.css' %}">
+    <link  rel="icon" href="{% static 'pictures/fav.ico' %}">
+    <title>Registration</title>
+</head>
+<body>
+
+<div class="container">
+            <div id="header">шапка сайта</div>
+    <div class="buttondiv">
+            <div class="regbutton" onclick="location.href={% url 'register' %}">Зарегистрироваться</div>
+            <div class="login">Войти</div>
+    </div>
+ <footer>ЖОПА</footer>
+</div>
+</body>
+</html>

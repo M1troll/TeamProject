@@ -1,0 +1,98 @@
+body
+{
+}
+.container
+{
+    max-width: 1200px;
+    padding: 0px 15px;
+    margin: 0 auto;
+}
+
+.glow-button
+{
+  text-decoration: none;
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px 40px #F137A6 inset, 0 0 0 0 #F137A6;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+  transition: .15s ease-in-out;
+}
+.glow-button:hover {
+  box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
+  color: #F137A6;
+}
+#regform
+{
+    background-color: #FFFF33;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: block;
+}
+
+#header{
+    background:#5BC8AC;
+}
+
+#footer{
+    background:#5BC8AC;
+}
+input
+{
+    border-radius: 10px;
+}
+input[type=text]
+{
+    padding: 12px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+input[type=submit]
+{
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+input[type=file]
+{
+    border-radius: 100px;
+}
+label
+{
+    font-family: Arial;
+    color: #F137A6;
+    font-weight: bold;
+    line-height: 1.15;
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+input[type=password]
+{
+	position: relative;
+}
+
+@media screen and (max-width: 600px) {
+input[type=submit] {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 1200px)
+{
+    .container{max-width: 970px}
+}
+@media (max-width: 992px)
+{
+    .container{max-width: 750px}
+}
+@media (max-width: 767px)
+{
+    .container{max-width: none}
+}
