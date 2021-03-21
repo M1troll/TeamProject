@@ -72,6 +72,7 @@ class User(AbstractUser):
 
 class Answer(models.Model):
     """Answer Model"""
+    question = models.ForeignKey('Question', verbose_name='Вопрос', on_delete=models.CASCADE, null=True)
     answer = models.CharField('Ответ', max_length=500)
 
     def __str__(self):
@@ -86,7 +87,6 @@ class Question(models.Model):
     """Question Model"""
     title = models.CharField('Заголовок вопроса', max_length=300)
     description = models.TextField('Описание вопроса', max_length=5000)
-    answers = models.ManyToManyField(Answer, verbose_name='Ответы', default=None, null=True)
     is_active = models.BooleanField('Активен', default=True)
 
     def __str__(self):
