@@ -21,7 +21,7 @@ STATUS = [
 class UserRating(models.Model):
     """User Rating Model"""
     user = models.ForeignKey('User', verbose_name='Пользователь', related_name='user',
-                                on_delete=models.CASCADE, default=-1)
+                             on_delete=models.CASCADE, default=-1)
     id_user_liked = models.ForeignKey('User', verbose_name='Кто поставил', related_name='user_liked',
                                       on_delete=models.CASCADE, default=-1)
 
@@ -51,6 +51,8 @@ class User(AbstractUser):
     last_login = models.DateTimeField('Заходил последний раз', auto_now_add=True, null=True)
     is_blocked = models.BooleanField('Заблокирован', default=False)
     coefficient = models.FloatField('Коэффициент', default=0.0)
+    partner_sex = models.CharField('Пол партнера', choices=SEX, max_length=2, default=SEX[2])
+    partner_max_age = models.PositiveSmallIntegerField('Максимальный возраст партнера', default=18)
     user_url = models.SlugField('URL пользователя', max_length=160, unique=True)
     test = models.OneToOneField('Test', verbose_name='Тест', on_delete=models.SET_NULL, null=True, blank=True)
     coef_range_min = models.FloatField('Нижняя граница поиска', default=0.0)
