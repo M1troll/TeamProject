@@ -1,92 +1,42 @@
-body{
-    height: 100vh;
-    background: radial-gradient(circle at right, #FF66FF 55%, #33CCFF 55%);
-}
-.buttondiv
+*
 {
-    margin-top: 30%;
-    margin-bottom: 30%;
+    font-family: Mysl Bold Italic;
+    font-size: 16px;
+    font-weight: 900;
 }
 
-.container
+.overlay
 {
-    height: 100%;
-    width: 100%;
-    max-width: 1200px;
-    padding: 0px 15px;
-    margin: 0 auto;
-}
-.login
-{
-     text-align: center;
-      text-decoration: none;
-      padding: 15px 30px;
-      margin: 10px 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 40px 40px #FFFF99 inset, 0 0 0 0 #FFFF99;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: bold;
-      letter-spacing: 2px;
-      color: black;
-      transition: .15s ease-in-out;
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-height: 100%;
+    min-width:100% ;
 
 
 }
-.regbutton
-{
-    text-align: center;
-    text-decoration: none;
-      padding: 15px 30px;
-      margin: 10px 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 40px 40px  #CC33FF inset, 0 0 0 0 #CC33FF;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: bold;
-      letter-spacing: 2px;
-      color: black;
-      transition: .15s ease-in-out;
-}
-.regbutton:hover {
-  box-shadow: 0 0 10px 0 #CC33FF   inset, 0 0 10px 4px #CC33FF  ;
-  color: #F137A6;
-}
-.buttonbox
-{
-    width: 100%;
-}
-.login:hover {
-  box-shadow: 0 0 10px 0 #FFFF99  inset, 0 0 10px 4px #FFFF99 ;
-  color: #F137A6;
-}
-#header{
-    background:#FFFF66;
-}
 
-#footer{
-    background:#FFFF66;
-    border-radius: 4px;
-        height: 30px;
-    margin-top:35px;
-}
+.myheader
+{
+    background: url("../pictures/MainBG.jpg") no-repeat;
+    background-size: cover;
+    padding-left: 0px;
+	padding-right: 0px;
+	width: 100%;
 
 
-@media screen and (max-width: 600px) {
-input[type=submit] {
-    margin-top: 0;
-  }
 }
-@media (max-width: 1200px)
-{
-    .container{max-width: 970px}
 
-}
-@media (max-width: 992px)
+.myfooter
 {
-    .container{max-width: 750px}
-
+  margin-top: -100px;
+  /*Минус Высота футера*/
+  height: 100px;
+  /*Высота футера*/;
+    border-color: black;
+    background: white;
 }
-@media (max-width: 767px)
+nav-link:hover
 {
-    .container{max-width: none}
 
 }

@@ -4,19 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     {% load static %}
-    <link type="text/css" rel="stylesheet" href="{% static 'styles/mainform.css' %}">
     <link  rel="icon" href="{% static 'pictures/fav.ico' %}">
     <title>Registration</title>
+
+     <link type="text/css" rel="stylesheet" href="{% static 'styles/mainform.css' %}">
+   <link rel="stylesheet" href=" {% static 'bootstrap-5.0.0-beta2-dist/css/bootstrap.css'%}">
+    <link rel="stylesheet" href=" {% static 'font-awesome/css/fontawesome.min.css'%}">
+    <script ENGINE="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
-
-<div class="container">
-            <div id="header">шапка сайта</div>
-    <div class="buttondiv">
-            <div class="regbutton" onclick="location.href={% url 'register' %}">Зарегистрироваться</div>
-            <div class="login">Войти</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Heartbites</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto my-2 my-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul>
     </div>
- <footer>ЖОПА</footer>
+  </div>
+</nav>
+
+
+<header class="myheader">
+    <div class="container">
+        <div class="description text-center">
+            <h3>Heartbits - проект, разработанный тремя студетами ИКИТ СФУ.<br>
+                Он предназначен для поиска людей со схожими интересами.<br>
+                По просту говоря - сайт знакомств.<br>
+                Всем писам кис, всем кисам пис.<br>
+            <p>
+                <button class="btn btn-outline-secondary">Зарегистрироваться</button><br>
+                <button class="btn btn-outline-secondary">Войти</button>
+            </p>
+            </h3>
+        </div>
+    </div>
+</header>
+
+
+
+<footer class="navbar fixed-bottom">
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4"></div>
 </div>
+</footer>
+
+<script type="text/javascript" src={% static 'js/main.js'%}></script>
+<script src="{% static 'bootstrap-5.0.0-beta2-dist/js/bootstrap.js'%}"></script>
+
 </body>
 </html>
