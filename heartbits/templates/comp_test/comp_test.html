@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>{{ question.title }}</p>
+    <p>{{ question.description }}</p>
+    <form method="post" action="{% url 'test' pk=question.id %}">
+        {% csrf_token %}
+        {% for answer in question.answer_set.all %}
+            <input type="radio" name="answer" value="{{ answer.pk }}">{{ answer }}<br>
+        {% endfor %}
+        <input type="submit" value="OK">
+    </form>
+</body>
+</html>

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'heartbits_app',
     'accounts',
+    'compatibility_test',
 ]
 
 MIDDLEWARE = [

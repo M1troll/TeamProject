@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date, datetime
 from django.contrib.auth.models import AbstractUser
+from math import sqrt
 
 # Create your models here.
 
@@ -54,7 +55,6 @@ class User(AbstractUser):
     partner_sex = models.CharField('Пол партнера', choices=SEX, max_length=2, default=SEX[2])
     partner_max_age = models.PositiveSmallIntegerField('Максимальный возраст партнера', default=18)
     user_url = models.SlugField('URL пользователя', max_length=160, unique=True)
-    test = models.OneToOneField('Test', verbose_name='Тест', on_delete=models.SET_NULL, null=True, blank=True)
     coef_range_min = models.FloatField('Нижняя граница поиска', default=0.0)
     coef_range_max = models.FloatField('Верхняя граница поиска', default=0.0)
     status = models.CharField('Статус', choices=STATUS, max_length=5, null=False)
@@ -63,6 +63,19 @@ class User(AbstractUser):
     def calculate_age(self):
         today = date.today()
         return today.year - self.birthday.year - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
+
+    def __dist_cosin(self, vec_a, vec_b):
+        def dot_product(vec_a, vec_b):
+            d = 0.0
+            for dim in vec_a:
+                if dim in vec_b:
+                    d += vec_a[dim] * vec_b[dim]
+            return d
+        return dot_product(vec_a, vec_b) / sqrt(dot_product(vec_a, vec_a)) / sqrt(dot_product(vec_b,vec_b))
+
+    def make_recommendation(self):
+        users = User.objects.all()
+        mentions = dict()
 
     def __str__(self):
         return '%s, %s' % (self.first_name, self.calculate_age())
@@ -76,6 +89,7 @@ class Answer(models.Model):
     """Answer Model"""
     question = models.ForeignKey('Question', verbose_name='Вопрос', on_delete=models.CASCADE, null=True)
     answer = models.CharField('Ответ', max_length=500)
+    weight = models.FloatField('Вес', default=0.0)
 
     def __str__(self):
         return self.answer
@@ -101,10 +115,15 @@ class Question(models.Model):
 
 class Test(models.Model):
     """Test Model"""
+
+    def test_result_default(self):
+        return {'default': 'default'}
+
+    user = models.OneToOneField('User', verbose_name='Пользователь', on_delete=models.SET_NULL, null=True, blank=True)
     test_title = models.CharField('Название теста', max_length=300)
     test_description = models.TextField('Описание теста', max_length=5000)
     test_questions = models.ManyToManyField(Question, verbose_name='Вопросы', related_name='test_questions')
-    test_result = models.CharField('Результаты теста', max_length=500, blank=True)
+    result = models.JSONField('Результаты теста', null=True)
     test_url = models.SlugField('URL теста', unique=True)
 
     def __str__(self):
