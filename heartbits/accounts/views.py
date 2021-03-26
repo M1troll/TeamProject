@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate
 from .forms import MyUserCreationForm, MyUserChangeForm, LoginUserForm
-from heartbits_app.models import User
+from heartbits_app.models import User, Test, Question
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.views import LoginView, LogoutView

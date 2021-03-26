@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from datetime import date, datetime
 from django.contrib.auth.models import AbstractUser
 from math import sqrt
@@ -115,10 +117,6 @@ class Question(models.Model):
 
 class Test(models.Model):
     """Test Model"""
-
-    def test_result_default(self):
-        return {'default': 'default'}
-
     user = models.OneToOneField('User', verbose_name='Пользователь', on_delete=models.SET_NULL, null=True, blank=True)
     test_title = models.CharField('Название теста', max_length=300)
     test_description = models.TextField('Описание теста', max_length=5000)
@@ -132,3 +130,19 @@ class Test(models.Model):
     class Meta:
         verbose_name = 'Тест'
         verbose_name_plural = 'Тесты'
+
+
+@receiver(post_save, sender=User)
+def create_test(sender, instance, raw=True, **kwargs):
+    new_test, created = Test.objects.get_or_create(test_title='Тест на совместимость',
+                                                   test_description='Пройдите этот тест и узнайте, с кем вы совместимы!',
+                                                   test_url='comp_test_%s' % instance.id,
+                                                   user=instance)
+    if created:
+        print('im in')
+        new_test.save()
+        questions = Question.objects.all()
+        for question in questions:
+            new_test.test_questions.add(question)
+        new_test.save()
+    return kwargs

@@ -1,5 +1,5 @@
 from django import forms
-from heartbits_app.models import User
+from heartbits_app.models import User, Test
 from datetime import date
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
@@ -61,7 +61,8 @@ class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'password1', 'password2', 'email', 'first_name', 'last_name', 'birthday', 'sex',
-                  'user_country', 'user_city', 'user_description', 'user_image', 'user_url']
+                  'partner_sex', 'partner_max_age', 'user_country', 'user_city', 'user_description', 'user_image',
+                  'user_url']
         widgets = {
                     'birthday': forms.SelectDateWidget(years=range(date.today().year - 50, date.today().year),
                                                        attrs={'class': 'form-control'}),
