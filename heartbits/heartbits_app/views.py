@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 
 
-def index(request):
+def main(request):
     user = request.user
     return render(request, 'main/main.html', context={'user': user})
 

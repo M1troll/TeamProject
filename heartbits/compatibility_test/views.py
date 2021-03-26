@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from heartbits_app.models import Question, Test, Answer, User
 import json
 # Create your views here.
 answers = {}
 
 
+@login_required(login_url='login')
 def test_detail(request, pk=1):
     test = Test.objects.get(user=request.user.pk)
     current_question = test.test_questions.get(pk=pk)

@@ -1,7 +1,8 @@
 from django.db import models
+from django.urls import reverse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from datetime import date, datetime
+from datetime import date
 from django.contrib.auth.models import AbstractUser
 from math import sqrt
 from operator import itemgetter
@@ -63,10 +64,12 @@ class User(AbstractUser):
     status = models.CharField('Статус', choices=STATUS, max_length=5, null=False)
     display_status = models.BooleanField('Отображение статуса', default=True)
 
-    @classmethod
-    def calculate_age(cls):
+    def get_absolute_url(self):
+        return reverse("user_update", kwargs={"slug": self.user_url})
+
+    def calculate_age(self):
         today = date.today()
-        return today.year - cls.birthday.year - ((today.month, today.day) < (cls.birthday.month, cls.birthday.day))
+        return today.year - self.birthday.year - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
 
     @classmethod
     def __dist_cosin(cls, vec_a, vec_b):
@@ -125,7 +128,7 @@ class Question(models.Model):
 
 class Test(models.Model):
     """Test Model"""
-    user = models.OneToOneField('User', verbose_name='Пользователь', on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.OneToOneField('User', verbose_name='Пользователь', on_delete=models.CASCADE, null=True, blank=True)
     test_title = models.CharField('Название теста', max_length=300)
     test_description = models.TextField('Описание теста', max_length=5000)
     test_questions = models.ManyToManyField(Question, verbose_name='Вопросы', related_name='test_questions')

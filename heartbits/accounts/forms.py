@@ -86,4 +86,5 @@ class MyUserChangeForm(UserChangeForm):
     class Meta:
         model = User
         fields = ['username', 'password', 'password2', 'email', 'first_name', 'last_name', 'birthday', 'sex',
-                  'user_country', 'user_city', 'user_description', 'user_image', 'user_url']
+                  'partner_sex', 'partner_max_age', 'user_country', 'user_city', 'user_description', 'user_image',
+                  'user_url']
