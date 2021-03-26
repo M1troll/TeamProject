@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from datetime import date, datetime
 from django.contrib.auth.models import AbstractUser
 from math import sqrt
+from operator import itemgetter
 
 # Create your models here.
 
@@ -62,22 +63,29 @@ class User(AbstractUser):
     status = models.CharField('Статус', choices=STATUS, max_length=5, null=False)
     display_status = models.BooleanField('Отображение статуса', default=True)
 
-    def calculate_age(self):
+    @classmethod
+    def calculate_age(cls):
         today = date.today()
-        return today.year - self.birthday.year - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
+        return today.year - cls.birthday.year - ((today.month, today.day) < (cls.birthday.month, cls.birthday.day))
 
-    def __dist_cosin(self, vec_a, vec_b):
+    @classmethod
+    def __dist_cosin(cls, vec_a, vec_b):
         def dot_product(vec_a, vec_b):
             d = 0.0
             for dim in vec_a:
                 if dim in vec_b:
                     d += vec_a[dim] * vec_b[dim]
             return d
-        return dot_product(vec_a, vec_b) / sqrt(dot_product(vec_a, vec_a)) / sqrt(dot_product(vec_b,vec_b))
+        return dot_product(vec_a, vec_b) / sqrt(dot_product(vec_a, vec_a)) / sqrt(dot_product(vec_b, vec_b))
 
-    def make_recommendation(self):
-        users = User.objects.all()
-        mentions = dict()
+    @classmethod
+    def make_recommendation(cls, user_instance, n_best_users):
+        tests = Test.objects.all()
+        test_results = {test.user.id: test.result for test in tests if test.result is not None}
+        matches = [(u, cls.__dist_cosin(test_results[user_instance.id], test_results[u]))
+                   for u in test_results if u != user_instance.id]
+        best_matches = sorted(matches, key=itemgetter(1), reverse=True)[:n_best_users]
+        print(matches)
 
     def __str__(self):
         return '%s, %s' % (self.first_name, self.calculate_age())
@@ -139,7 +147,6 @@ def create_test(sender, instance, raw=True, **kwargs):
                                                    test_url='comp_test_%s' % instance.id,
                                                    user=instance)
     if created:
-        print('im in')
         new_test.save()
         questions = Question.objects.all()
         for question in questions:

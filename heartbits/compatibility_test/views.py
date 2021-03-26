@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from heartbits_app.models import Question, Test, Answer
+from heartbits_app.models import Question, Test, Answer, User
 import json
 # Create your views here.
 answers = {}
@@ -17,6 +17,7 @@ def test_detail(request, pk=1):
                 return redirect('/test/%s' % next_question.pk)
             test.result = answers
             test.save()
+            User.make_recommendation(request.user, 5)
             return render(request, 'comp_test/answer.html')
         else:
             return redirect('/test/%s' % current_question.pk)
