@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate
-from django.contrib.auth.hashers import make_password
 from .forms import MyUserCreationForm, MyUserChangeForm, LoginUserForm
 from heartbits_app.models import User, Test, Question
 from django.urls import reverse_lazy
@@ -31,7 +29,7 @@ class Logout(LogoutView):
 class UserUpdateView(generic.UpdateView):
     model = User
     slug_field = 'user_url'
-    template_name = 'accounts/user_detail.html'
+    template_name = 'accounts/user_update.html'
     form_class = MyUserChangeForm
 
     def get_queryset(self):

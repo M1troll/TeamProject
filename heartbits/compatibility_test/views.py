@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from heartbits_app.models import Question, Test, Answer, User
 import json
@@ -20,7 +21,7 @@ def test_detail(request, pk=1):
             test.result = answers
             test.save()
             User.make_recommendation(request.user, 5)
-            return render(request, 'comp_test/answer.html')
+            return redirect('/%s' % User.objects.get(id=request.user.pk).user_url)
         else:
             return redirect('/test/%s' % current_question.pk)
     else:
