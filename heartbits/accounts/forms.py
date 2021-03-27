@@ -1,32 +1,10 @@
-from django import forms
-from heartbits_app.models import User, Test
 from datetime import date
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import ngettext
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-
-
-# class RegisterUserForm(forms.ModelForm):
-#     password = forms.CharField(
-#         max_length=24,
-#         label='Введите пароль',
-#         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Введите пароль'}),
-#     )
-#     password2 = forms.CharField(
-#         max_length=24,
-#         label='Подтвердите пароль',
-#         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Повторите пароль'}),
-#         help_text="Введите такой же пароль для подтверждения.",
-#     )
-#     field_order = ['username', 'password', 'password2']
-#
-#     class Meta:
-#         model = User
-#         exclude = ['date_register', 'last_online', 'is_blocked', 'coefficient', 'coef_range_max', 'coef_range_min',
-#                    'test', 'status', 'display_status', 'is_active', 'is_staff', 'is_superuser', 'user_permissions',
-#                    'groups']
-#         widgets = {
-#             'birthday': forms.SelectDateWidget(years=range(date.today().year - 50, date.today().year),
-#             attrs={'class': 'form-control'}),
-#         }
+from heartbits_app.custom_validators import custom_validate_slug, CustomMinValueValidator, CustomMaxValueValidator
+from heartbits_app.models import User, Test
 
 
 class LoginUserForm(forms.ModelForm):
@@ -54,9 +32,28 @@ class MyUserCreationForm(UserCreationForm):
             max_length=24,
             label='Подтвердите пароль',
             widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Повторите пароль'}),
-            help_text="Введите такой же пароль для подтверждения.",
         )
-    # field_order = ['username', 'password', 'password2']
+    partner_max_age = forms.IntegerField(
+        label='Максимальный возраст партнера',
+        validators=[CustomMinValueValidator(18), CustomMaxValueValidator(99)]
+    )
+    user_url = forms.CharField(
+        max_length=160,
+        label='URL пользователя',
+        validators=[custom_validate_slug]
+    )
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        username_qs = User.objects.filter(username=username)
+        if username_qs.exists():
+            raise ValidationError(
+                ngettext('Пользователь с таким именем пользователя уже существует.',
+                         'Пользователь с таким именем пользователя уже существует.',
+                         None),
+                code='username_exists',
+            )
+        return username
 
     class Meta:
         model = User
@@ -79,7 +76,6 @@ class MyUserChangeForm(UserChangeForm):
         max_length=24,
         label='Подтвердите новый пароль',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Повторите новый пароль'}),
-        help_text="Введите такой же пароль для подтверждения.",
     )
     field_order = ['username', 'password', 'password2']
 
