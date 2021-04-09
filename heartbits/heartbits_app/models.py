@@ -82,13 +82,15 @@ class User(AbstractUser):
         return dot_product(vec_a, vec_b) / sqrt(dot_product(vec_a, vec_a)) / sqrt(dot_product(vec_b, vec_b))
 
     @classmethod
-    def make_recommendation(cls, user_instance, n_best_users):
+    def make_recommendation(cls, user_instance):
         tests = Test.objects.all()
         test_results = {test.user.id: test.result for test in tests if test.result is not None}
         matches = [(u, cls.__dist_cosin(test_results[user_instance.id], test_results[u]))
-                   for u in test_results if u != user_instance.id]
-        best_matches = sorted(matches, key=itemgetter(1), reverse=True)[:n_best_users]
-        print(matches)
+                   for u in test_results
+                   if u != user_instance.id and
+                   1 - cls.__dist_cosin(test_results[user_instance.id], test_results[u]) <= 0.3]
+        best_matches = sorted(matches, key=itemgetter(1), reverse=True)
+        return best_matches
 
     def __str__(self):
         return '%s, %s' % (self.first_name, self.calculate_age())

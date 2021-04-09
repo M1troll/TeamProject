@@ -20,8 +20,7 @@ def test_detail(request, pk=1):
                 return redirect('/test/%s' % next_question.pk)
             test.result = answers
             test.save()
-            User.make_recommendation(request.user, 5)
-            return redirect('/%s' % User.objects.get(id=request.user.pk).user_url)
+            return redirect('/%s/matches' % User.objects.get(pk=request.user.pk).user_url)
         else:
             return redirect('/test/%s' % current_question.pk)
     else:
