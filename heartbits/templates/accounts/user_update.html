@@ -8,6 +8,7 @@
     <form method="post" action="{% url 'user_update' slug=user.user_url %}">
         {% csrf_token %}
         {{ form.as_p }}
+        <p>To update password, click <a href="{% url 'password_change' slug=user.user_url %}">HERE</a></p>
         <input type="submit" value="Изменить">
     </form>
 </body>

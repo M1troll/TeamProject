@@ -4,7 +4,7 @@ from .forms import MyUserCreationForm, MyUserChangeForm, LoginUserForm
 from heartbits_app.models import User, Test, Question
 from django.urls import reverse_lazy
 from django.views import generic
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 
 # Create your views here.
 
@@ -12,7 +12,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 class SignUp(generic.CreateView):
     model = User
     form_class = MyUserCreationForm
-    success_url = reverse_lazy('test', kwargs={'pk': Test.objects.first().pk})
+    success_url = reverse_lazy('test-render')
     template_name = 'accounts/register.html'
 
 
@@ -35,6 +35,11 @@ class UserUpdateView(generic.UpdateView):
     def get_queryset(self):
         base_qs = super(UserUpdateView, self).get_queryset()
         return base_qs.filter(id=self.request.user.pk)
+
+
+class MyPasswordChangeView(PasswordChangeView):
+    template_name = 'accounts/change_password.html'
+
 
 
 # def user_detail(request, slug):

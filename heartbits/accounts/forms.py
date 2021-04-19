@@ -67,20 +67,8 @@ class MyUserCreationForm(UserCreationForm):
 
 
 class MyUserChangeForm(UserChangeForm):
-    password = forms.CharField(
-        max_length=24,
-        label='Новый пароль',
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Введите новый пароль'}),
-    )
-    password2 = forms.CharField(
-        max_length=24,
-        label='Подтвердите новый пароль',
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Повторите новый пароль'}),
-    )
-    field_order = ['username', 'password', 'password2']
-
     class Meta:
         model = User
-        fields = ['username', 'password', 'password2', 'email', 'first_name', 'last_name', 'birthday', 'sex',
+        fields = ['username', 'email', 'first_name', 'last_name', 'birthday', 'sex',
                   'partner_sex', 'partner_max_age', 'user_country', 'user_city', 'user_description', 'user_image',
                   'user_url']

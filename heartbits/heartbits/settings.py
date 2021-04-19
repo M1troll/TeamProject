@@ -104,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'heartbits_app.User'
-LOGIN_REDIRECT_URL = reverse_lazy('test', kwargs={'pk': 1})
+LOGIN_REDIRECT_URL = reverse_lazy('test-render')
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
