@@ -39,6 +39,7 @@ class UserUpdateView(generic.UpdateView):
 
 class MyPasswordChangeView(PasswordChangeView):
     template_name = 'accounts/change_password.html'
+    success_url = reverse_lazy('login')
 
 
 
