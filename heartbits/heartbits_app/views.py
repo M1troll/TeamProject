@@ -15,15 +15,12 @@ def main(request):
 def matches(request):
     current_user = User.objects.get(pk=request.user.pk)
     matches = current_user.make_recommendation(current_user)
-    print(matches)
     recommended_users = []
     for match in matches:
         user = User.objects.get(pk=match[0])
-        print(user)
         if user.calculate_age() <= current_user.partner_max_age and \
                 (user.sex == current_user.partner_sex or current_user.partner_sex == 'ND'):
             recommended_users.append(user)
-    print(recommended_users)
     return render(request, 'matches/matches.html', {'recommended_users': recommended_users})
 
 

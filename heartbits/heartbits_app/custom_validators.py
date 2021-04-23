@@ -22,8 +22,8 @@ class CustomMinimumLengthValidator(MinimumLengthValidator):
 
     def get_help_text(self):
         return ngettext(
-            'Пароль слишком короткий. Минимальное количество символов - %(min_length)d ',
-            'Пароль слишком короткий. Минимальное количество символов - %(min_length)d ',
+            'Пароль не может быть короче %(min_length)d символов.',
+            'Пароль не может быть короче %(min_length)d символов.',
             self.min_length
         ) % {'min_length': self.min_length}
 
