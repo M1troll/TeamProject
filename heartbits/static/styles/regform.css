@@ -1,12 +1,3 @@
-body
-{
-}
-.container
-{
-    max-width: 1200px;
-    padding: 0px 15px;
-    margin: 0 auto;
-}
 
 .glow-button
 {
@@ -26,73 +17,37 @@ body
   box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
   color: #F137A6;
 }
-#regform
-{
-    background-color: #FFFF33;
-    border-radius: 10px;
-    margin: 0 auto;
-    padding: 10px 20px;
-    display: block;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 0;
+  transition: background-color 5000s ease-in-out 0s;
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,174,255,0.04) 50%,rgba(255,255,255,0) 51%,rgba(0,174,255,0.03) 100%);
 }
 
-#header{
-    background:#5BC8AC;
+#registerform
+{
+  justify-content: center !important;
+  justify-items: center !important;
+  text-align: center !important;
+  background: url("../pictures/regbackground.jpeg");
+}
+#registerform input[type=text],input[type=password],input[type=email],select
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  width: 50% !important;
+  background: #F137A6;
 }
 
-#footer{
-    background:#5BC8AC;
-}
-input
-{
-    border-radius: 10px;
-}
-input[type=text]
-{
-    padding: 12px;
-    box-sizing: border-box;
-    resize: vertical;
-}
-input[type=submit]
-{
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-}
-input[type=file]
-{
-    border-radius: 100px;
-}
-label
-{
-    font-family: Arial;
-    color: #F137A6;
-    font-weight: bold;
-    line-height: 1.15;
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-}
-input[type=password]
-{
-	position: relative;
-}
 
-@media screen and (max-width: 600px) {
-input[type=submit] {
-    margin-top: 0;
-  }
-}
 
-@media (max-width: 1200px)
-{
-    .container{max-width: 970px}
-}
-@media (max-width: 992px)
-{
-    .container{max-width: 750px}
-}
-@media (max-width: 767px)
-{
-    .container{max-width: none}
-}
