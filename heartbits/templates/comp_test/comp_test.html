@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+
 <div class="question">
     <p>{{ question.title }}</p>
     <p>{{ question.description }}</p>
@@ -18,7 +13,11 @@
         <input type="submit" value="OK">
     </form>
 </div>
-<script type="text/javascript">
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
     {#$.get('test-ajax', {pk: })(function (data) {#}
     {#    $('.question').html(data.html);#}
     {#    alert('Loaded!')#}
@@ -46,5 +45,4 @@
         );
     });
 </script>
-</body>
-</html>
+{% endblock %}
