@@ -34,7 +34,7 @@ answers = {}
 
 @login_required(login_url='login')
 def test_render(request):
-    if not Test.objects.get(pk=request.user.pk).result:
+    if not Test.objects.get(user_id=request.user.pk).result:
         if request.method == 'GET':
             question = Question.objects.first()
             return render(request, 'comp_test/comp_test.html', context={'question': question})

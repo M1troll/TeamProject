@@ -5,12 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-    <form method="post" action="{% url 'user_update' slug=user.user_url %}">
+    <form method="post" action="{% url 'user_update' slug=user.user_url %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Изменить">
     </form>
-    <form action="{% url 'password_change' slug=user.user_url%}" method="post">
+    <form action="{% url 'password_change' slug=user.user_url %}" method="post">
         {% csrf_token %}
         {{ pw_form.as_p }}
         <input type="submit" value="Изменить">
