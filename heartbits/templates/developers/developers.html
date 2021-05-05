@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="card mb3" style="margin-top: 30px">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{% static 'pictures/back.png' %}" class="card-img-top" alt="Фотография backend-разработчика">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">backend-разработчик</h5>
+                <p class="card-text">Занимался тем-то, тем-то...</p>
+                <a class="btn m-1 ico" href="#!" role="button">
+                    <i class="fa fa-vk"></i>
+                </a>
+                <a class="btn m-1 ico" href="https://github.com/M1troll/TeamProject" role="button">
+                    <i class="fa fa-github-square fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{% static 'pictures/proj.jpg' %}" class="card-img-top" alt="Фотография Проджект Менеджера">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Проджект Менеджер</h5>
+                <p class="card-text">Занимался тем-то, тем-то...</p>
+                <a class="btn m-1 ico" href="#!" role="button">
+                    <i class="fa fa-vk"></i>
+                </a>
+                <a class="btn m-1 ico" href="https://github.com/M1troll/TeamProject" role="button">
+                    <i class="fa fa-github-square fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-30">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{% static 'pictures/front.jpg' %}" class="card-img-top" alt="Фотография frontend-разработчика">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">frontend-разработчик</h5>
+                <p class="card-text">Занимался тем-то, тем-то...</p>
+                <a class="btn m-1 ico" href="#!" role="button">
+                    <i class="fa fa-vk"></i>
+                </a>
+                <a class="btn m-1 ico" href="https://github.com/M1troll/TeamProject" role="button">
+                    <i class="fa fa-github-square fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

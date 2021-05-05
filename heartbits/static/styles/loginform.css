@@ -13,17 +13,45 @@ select:-webkit-autofill:focus {
   background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,174,255,0.04) 50%,rgba(255,255,255,0) 51%,rgba(0,174,255,0.03) 100%);
 }
 
-#loginform
+div.container #loginform
 {
-  justify-content: center !important;
+   justify-content: center ;
   justify-items: center ;
-  background: url("../pictures/regbackground.jpeg") no-repeat;
-  background-size:cover;
+  text-align: center ;
+  margin-bottom: 100px;
+  padding-top: 25px;
+  padding-bottom: 50px;
 }
-#loginform input[type=text],input[type=password],input[type=email],select
+
+div.container.page #loginform input[type=text],input[type=password],input[type=email],input[type=file],input[type=number]
 {
-    border-radius: 20px;
-  position: center;
-  background: #F137A6 !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  width: 50%;
+}
+
+div.container.page #loginform input[type=text],input[type=password],input[type=email],input[type=number]
+{
+   border:3px solid #5BC8AC;
+  border-radius: 10px;
+}
+
+div.container #loginform label
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Courier New", Courier, Monospace;
+  font-weight: 600;
+}
+
+.logintitle
+{
+  text-align: center;
+  padding-top: 30px;
+  font-family: "Courier New", Courier, Monospace;
+  font-weight: bold;
 }
 

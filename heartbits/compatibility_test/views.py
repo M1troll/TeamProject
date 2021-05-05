@@ -51,15 +51,16 @@ def test_ajax(request, pk):
             next_question = Question.objects.filter(id__gt=current_question.id).order_by('id').first()
             if next_question is not None:
                 answers[current_question.id.__str__()] = Answer.objects.get(pk=data).weight
-                html_response = '<p>' + next_question.title + '</p>' + '<p>' + next_question.description + '</p>' + \
-                                '<form id="test-form" data-question-id="' + str(next_question.id) + '">' + \
+                html_response = '<p class="card-header text-center">' + next_question.title \
+                                + '</p>' + '<p class="card-title">' + next_question.description + '</p>' + \
+                                '<div class="card-body"><form id="test-form" data-question-id="' + str(next_question.id) + '">' + \
                                 '<input type="hidden" name="csrfmiddlewaretoken" value="' + str(
                     csrf(request)['csrf_token']) \
                                 + '">'
                 for answer in next_question.answer_set.all():
-                    html_response += '<input type="radio" name="answer" value="' + \
-                                     str(answer.pk) + '">' + answer.answer + '<br>'
-                html_response += '<input type="submit" value="OK"></form>'
+                    html_response += '<p><input class="form-check-input" type="radio" name="answer" value="' + \
+                                     str(answer.pk) + '">' + answer.answer + '</p>'
+                html_response += '<input type="submit" value="OK"></form></div>'
                 response = {
                     'question_html': html_response
                 }

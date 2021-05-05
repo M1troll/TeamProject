@@ -24,5 +24,9 @@ def matches(request):
     return render(request, 'matches/matches.html', {'recommended_users': recommended_users})
 
 
+def developers(request):
+    return render(request, 'developers/developers.html')
+
+
 
 

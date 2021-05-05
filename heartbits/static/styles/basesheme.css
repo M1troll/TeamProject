@@ -1,0 +1,17 @@
+html,body{
+  height: 100%;
+}
+
+.page{
+  min-height: 100%;
+  height: auto !important;
+  margin: 0 auto -130px;
+}
+
+.basefooter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width:100%;
+}
+

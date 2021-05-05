@@ -51,7 +51,7 @@ class User(AbstractUser):
     user_country = models.CharField('Страна', max_length=100)
     user_city = models.CharField('Город', max_length=100)
     user_description = models.TextField('Описание', max_length=5000)
-    user_image = models.ImageField('Изображение', upload_to='user_photos/', blank=True)
+    user_image = models.ImageField('Изображение', upload_to='user_photos/', blank=True, default='user_photos/default_user.jpg')
     date_joined = models.DateField('Дата регистрации', auto_now_add=True)
     last_login = models.DateTimeField('Заходил последний раз', auto_now_add=True, null=True)
     is_blocked = models.BooleanField('Заблокирован', default=False)

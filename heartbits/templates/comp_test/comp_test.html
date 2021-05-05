@@ -1,48 +1,51 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="question">
-    <p>{{ question.title }}</p>
-    <p>{{ question.description }}</p>
-    {#method="post" action="{% url 'test-ajax' pk=question.id %}"#}
-    <form id="test-form" data-question-id="{{ question.id }}">
-        {% csrf_token %}
-        {% for answer in question.answer_set.all %}
-            <input type="radio" name="answer" value="{{ answer.pk }}">{{ answer }}<br>
-        {% endfor %}
-        <input type="submit" value="OK">
-    </form>
-</div>
+    <div class="question card mt-5">
+        <p class="card-header text-center">{{ question.title }}</p>
+        <p class="card-title" style="">{{ question.description }}</p>
+        {#method="post" action="{% url 'test-ajax' pk=question.id %}"#}
+        <div class="card-body">
+            <form id="test-form" data-question-id="{{ question.id }}">
+                {% csrf_token %}
+                {% for answer in question.answer_set.all %}
+                    <p><input class="form-check-input" type="radio" name="answer" value="{{ answer.pk }}">{{ answer }}
+                    </p>
+                {% endfor %}
+                <input type="submit" value="OK">
+            </form>
+        </div>
+    </div>
+
 
 {% endblock %}
 
 {% block scripts %}
     <script type="text/javascript">
-    {#$.get('test-ajax', {pk: })(function (data) {#}
-    {#    $('.question').html(data.html);#}
-    {#    alert('Loaded!')#}
-    {# });#}
+        {#$.get('test-ajax', {pk: })(function (data) {#}
+        {#    $('.question').html(data.html);#}
+        {#    alert('Loaded!')#}
+        {# });#}
 
-    $(document).ready(function () {
-        $(document).on('submit', $('#test-form'), (function (e) {
-                e.preventDefault();
-                $.ajax({
-                    data: $('#test-form').serialize(),
-                    url: "/test-ajax-" + $('#test-form').data('question-id') + "/",
-                    dataType: 'json',
-                    method: "POST",
-                    cache: false
-                }).done(function (response) {
-                    console.log(response);
-                    if (response.question_html != null) {
-                        $('.question').html(response.question_html);
-                    }
-                    else {
-                        window.location.replace(response.redirect_url);
-                    }
-                });
-            })
-        );
-    });
-</script>
+        $(document).ready(function () {
+            $(document).on('submit', $('#test-form'), (function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        data: $('#test-form').serialize(),
+                        url: "/test-ajax-" + $('#test-form').data('question-id') + "/",
+                        dataType: 'json',
+                        method: "POST",
+                        cache: false
+                    }).done(function (response) {
+                        console.log(response);
+                        if (response.question_html != null) {
+                            $('.question').html(response.question_html);
+                        } else {
+                            window.location.replace(response.redirect_url);
+                        }
+                    });
+                })
+            );
+        });
+    </script>
 {% endblock %}

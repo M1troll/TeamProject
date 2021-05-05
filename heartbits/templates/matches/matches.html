@@ -1,7 +1,19 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-    {% for user in recommended_users %}
-        <p>{{ user.username }}</p>
-    {% endfor %}
+    <h1 class="recomendstitle">
+        Рекомендации
+    </h1>
+        {% for user in recommended_users %}
+            <div class="card recomendations" style="width: 18rem">
+                <div class="card-header">
+                    {{ user.username }}
+                </div>
+                <img class="card-img-bottom" src="{{ user.user_image.url }}">
+
+                <div class="card-body">
+                    {{ user.user_description }}
+                </div>
+            </div>
+        {% endfor %}
 {% endblock %}
