@@ -66,13 +66,16 @@ class MyPasswordChangeView(PasswordChangeView):
 def user_like_ajax(request, pk):
     if request.method == 'POST':
         user = User.objects.get(pk=pk)
-        _, created = UserRating.objects.get_or_create(user=user, id_user_liked=request.user.pk)
+        like, created = UserRating.objects.get_or_create(user=user, id_user_liked=request.user.pk)
         if created:
             response = {
-                'success': True
+                'success': True,
+                'action': 'create'
             }
             return JsonResponse(response)
+        like.delete()
         response = {
-            'success': False
+            'success': True,
+            'action': 'delete'
         }
         return JsonResponse(response)
