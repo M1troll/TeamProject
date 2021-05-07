@@ -9,4 +9,5 @@ urlpatterns = [
     path('logout/', views.Logout.as_view(), name='logout'),
     path('<slug:slug>/', login_required(login_url='login')(views.UserUpdateView.as_view()), name='user_update'),
     path('<slug:slug>/password/', login_required(login_url='login')(views.MyPasswordChangeView.as_view()), name='password_change'),
+    path('user_likes/<int:pk>/', views.user_like_ajax, name='user_likes'),
 ]
