@@ -96,15 +96,7 @@ div.container #registerform label
   font-weight: bold;
 }
 
-div.container.page #formwrapper
-{
-  background:rgba( 0,0,0,.6);
-  border-radius: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
 
 
 

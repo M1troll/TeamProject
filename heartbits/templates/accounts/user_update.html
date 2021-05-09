@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
-
+{% block title %}
+    UserUpdate
+{% endblock %}
 {% block content %}
-    <form method="post" action="{% url 'user_update' slug=user.user_url %}" enctype="multipart/form-data">
+<h1 class="updateformtitle">
+    Изменение данных
+</h1>
+    <form id="updateinfoform" method="post" action="{% url 'user_update' slug=user.user_url %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Изменить">

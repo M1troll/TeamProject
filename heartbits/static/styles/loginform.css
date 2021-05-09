@@ -30,6 +30,7 @@ div.container.page #loginform input[type=text],input[type=password],input[type=e
   margin-right: auto;
   box-sizing: border-box;
   width: 50%;
+
 }
 
 div.container.page #loginform input[type=text],input[type=password],input[type=email],input[type=number]

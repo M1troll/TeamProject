@@ -1,12 +1,61 @@
-.recomendations
+card.recomendations
 {
     margin: 10px;
+    text-align: center;
 }
 
+/*CardAnimation*/
+.flipcard
+{
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+.scene
+{
+    perspective: 600px;
+}
+
+
+.card__face
+{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.card__face--front
+{
+  background: red;
+}
+
+.card__face--back
+{
+  background: blue;
+  transform: rotateY( 180deg );
+}
+
+.flipcard.is-flipped
+{
+  transform: rotateY(180deg);
+}
+/*CardAnimation*/
 .recomendstitle
 {
   text-align: center;
   padding-top: 30px;
   font-family: "Courier New", Courier, Monospace;
   font-weight: bold;
+}
+
+.sex img
+{
+    width: 45px;
+    height: 45px;
+}
+
+.sex img:hover
+{
+    transform: scale(2,2);
 }

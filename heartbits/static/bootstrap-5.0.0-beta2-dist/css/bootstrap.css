@@ -4214,14 +4214,17 @@ textarea.form-control-lg {
 
 .card {
   position: relative;
-  display: flex;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
 .card > hr {
   margin-right: 0;
@@ -4316,6 +4319,7 @@ textarea.form-control-lg {
 .card-img-top,
 .card-img-bottom {
   width: 100%;
+  padding: 10px;
 }
 
 .card-img,

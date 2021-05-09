@@ -1,19 +1,83 @@
 {% extends 'base.html' %}
+{% block title %}
+Recomendations
+{% endblock %}
 {% load static %}
 {% block content %}
-    <h1 class="recomendstitle">
-        Рекомендации
-    </h1>
-        {% for user in recommended_users %}
-            <div class="card recomendations" style="width: 18rem">
-                <div class="card-header">
-                    {{ user.username }}
-                </div>
-                <img class="card-img-bottom" src="{{ user.user_image.url }}">
+<h1 class="recomendstitle">
+    Рекомендации
+</h1>
+{% for user in recommended_users %}
+<div class="card recomendations" style="width: 30rem">
 
-                <div class="card-body">
-                    {{ user.user_description }}
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                {{ user.username }}
+            </div>
+            {% if 'M' in user.sex %}
+            <div class="col-md-6 sex" style="text-align: right;">
+                <img class="gender" title="Мужчина" src="{% static 'pictures/man.png' %}">
+            </div>
+            {% elif 'W' in user.sex %}
+            <div class="col-md-6 sex" style="text-align: right;">
+                <img class="gender" title="Женщина" src="{% static 'pictures/woman.png' %}">
+
+            </div>
+            {% elif 'ND' in user.sex %}
+            <div class="col-md-6 sex" style="text-align: right;">
+                <img class="gender" title="Не определен" src="{% static 'pictures/gender.png' %}">
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="card-img-bottom" src="{{ user.user_image.url }}">
+        </div>
+        <div class="col-md-8">
+
+            <div class="card-body">
+                <div class="container">
+                    <div class="scene">
+                        <div class="flipcard card">
+                            <div class="card__face card__face--front">
+                                {{ user.user_description }}
+                            </div>
+                            <div class="card__face card__face--back">
+                                Email:{{ user.email }}
+                                Email:{{ user.email }}
+                                Email:{{ user.email }}
+                                Email:{{ user.email }}
+                                Email:{{ user.email }}
+                                Email:{{ user.email }}
+                                Email:{{ user.email }}
+                                Email:{{ user.email }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        {% endfor %}
-{% endblock %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row" style="margin-bottom: 150px">
+
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $('.flipcard').each(function (){
+                /*var card = document.querySelector('.flipcard');*/
+                $(this).addEventListener('click', function () {
+            $(this).classList.toggle('is-flipped');
+        });
+            })
+        })
+
+    </script>
+    {% endblock %}

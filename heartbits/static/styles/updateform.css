@@ -1,0 +1,41 @@
+div.container #updateinfoform
+{
+   justify-content: center ;
+  justify-items: center ;
+  text-align: center ;
+  margin-bottom: 100px;
+  padding-top: 25px;
+  padding-bottom: 50px;
+}
+
+div.container.page #updateinfoform input[type=text],input[type=password],input[type=email],input[type=file],input[type=number],input[type=checkbox]
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  width: 50%;
+}
+
+div.container.page #updateinfoform input[type=text],input[type=password],input[type=email],input[type=number]
+{
+   border:3px solid #5BC8AC;
+  border-radius: 10px;
+}
+
+div.container #updateinfoform label
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Courier New", Courier, Monospace;
+  font-weight: 600;
+}
+
+.updateformtitle
+{
+  text-align: center;
+  padding-top: 30px;
+  font-family: "Courier New", Courier, Monospace;
+  font-weight: bold;
+}
