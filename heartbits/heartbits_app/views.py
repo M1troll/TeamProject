@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import User
+from .models import User, UserRating
 
 # Create your views here.
 
@@ -26,6 +26,28 @@ def matches(request):
 
 def developers(request):
     return render(request, 'developers/developers.html')
+
+
+@login_required(login_url='login')
+def user_like_ajax(request):
+    if request.method == 'POST':
+        pk = request.POST['pk'][0]
+        user = User.objects.get(pk=pk)
+        like, created = UserRating.objects.get_or_create(user=user, id_user_liked=request.user)
+        if created:
+            response = {
+                'success': True,
+                'action': 'create',
+                'user_likes': user.get_user_likes(),
+            }
+            return JsonResponse(response)
+        like.delete()
+        response = {
+            'success': True,
+            'action': 'delete',
+            'user_likes': user.get_user_likes(),
+        }
+        return JsonResponse(response)
 
 
 

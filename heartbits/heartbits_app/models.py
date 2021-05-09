@@ -64,7 +64,7 @@ class User(AbstractUser):
         return today.year - self.birthday.year - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
 
     def get_user_likes(self):
-        likes = UserRating.objects.filter(user=self.user)
+        likes = UserRating.objects.filter(user=self.id)
         return len(likes)
 
     @classmethod

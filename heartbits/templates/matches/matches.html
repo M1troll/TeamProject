@@ -4,16 +4,62 @@
     <h1 class="recomendstitle">
         Рекомендации
     </h1>
-        {% for user in recommended_users %}
-            <div class="card recomendations" style="width: 18rem">
-                <div class="card-header">
-                    {{ user.username }}
-                </div>
-                <img class="card-img-bottom" src="{{ user.user_image.url }}">
+    {% for user in recommended_users %}
+        <div class="card recomendations" style="width: 18rem">
+            <div class="card-header">
+                {{ user.username }}
+            </div>
+            <img class="card-img-bottom" src="{{ user.user_image.url }}">
 
-                <div class="card-body">
-                    {{ user.user_description }}
+            <div class="card-body">
+                <div class="d-block justify-content-center">
+                    <p>{{ user.user_description }}</p>
+                    <form class="like-form" id="{{ user.pk }}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="fa fa-thumbs-o-up"></i>
+                            <span id="likes" class="text-dark">{{ user.get_user_likes }}</span>
+                        </button>
+                    </form>
                 </div>
             </div>
-        {% endfor %}
+        </div>
+    {% endfor %}
 {% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('submit', $('.like-form'), (function (e) {
+                    e.preventDefault();
+                    const formID = $(e.target).attr('id');
+                    const targetFormString = '.like-form' + '#' + formID;
+                    var form = $(targetFormString);
+                    const data = form.serializeArray();
+                    data.push({name: 'pk', value: formID})
+                    $.ajax({
+                        data: data,
+                        url: "{% url 'user_likes' %}",
+                        dataType: 'json',
+                        method: "POST",
+                        cache: false,
+                        success: function (response) {
+                            if (response.success === true) {
+                                const targetElement = targetFormString + ' button';
+                                if (response.action === 'create') {
+                                    $(targetElement).html(
+                                        '<i class="fa fa-thumbs-up"></i>' +
+                                        '<span id="likes" class="text-dark">' + response.user_likes + '</span>');
+                                }
+                                if (response.action === 'delete') {
+                                    $(targetElement).html(
+                                        '<i class="fa fa-thumbs-o-up"></i>' +
+                                        '<span id="likes" class="text-dark">' + response.user_likes + '</span>');
+                                }
+                            }
+                        }
+                    });
+                })
+            );
+        });
+    </script>
+{% endblock scripts %}

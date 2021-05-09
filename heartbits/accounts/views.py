@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 from .forms import MyUserCreationForm, MyUserChangeForm, MyPasswordChangeForm
 from heartbits_app.models import User, UserRating
 from django.urls import reverse_lazy
@@ -60,22 +62,3 @@ class MyPasswordChangeView(PasswordChangeView):
     def get_success_url(self):
         self.success_url = self.success_url % self.request.user.user_url
         return str(self.success_url)
-
-
-@login_required(login_url='login')
-def user_like_ajax(request, pk):
-    if request.method == 'POST':
-        user = User.objects.get(pk=pk)
-        like, created = UserRating.objects.get_or_create(user=user, id_user_liked=request.user.pk)
-        if created:
-            response = {
-                'success': True,
-                'action': 'create'
-            }
-            return JsonResponse(response)
-        like.delete()
-        response = {
-            'success': True,
-            'action': 'delete'
-        }
-        return JsonResponse(response)
