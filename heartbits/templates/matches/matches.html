@@ -69,15 +69,5 @@ Recomendations
     {% endblock %}
 
     {% block scripts %}
-    <script type="text/javascript">
-        $(document).ready(function (){
-            $('.flipcard').each(function (){
-                /*var card = document.querySelector('.flipcard');*/
-                $(this).addEventListener('click', function () {
-            $(this).classList.toggle('is-flipped');
-        });
-            })
-        })
-
-    </script>
+    <script type="text/javascript" src="{% static 'js/description-animation.js' %}"></script>
     {% endblock %}
