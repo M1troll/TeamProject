@@ -1,7 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block title %}
     Login
 {% endblock %}
+
+{% block links %}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/loginform.css' %}">
+{% endblock %}
+
 {% block content %}
 
     <h1 class="logintitle">

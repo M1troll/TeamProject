@@ -8,6 +8,10 @@ div.container #updateinfoform
   padding-bottom: 50px;
 }
 
+#passwordupdateform{
+  padding-bottom: 5em;
+}
+
 div.container.page #updateinfoform input[type=text],input[type=password],input[type=email],input[type=file],input[type=number],input[type=checkbox]
 {
   display: block;

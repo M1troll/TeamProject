@@ -49,6 +49,10 @@ card.recomendations
   font-weight: bold;
 }
 
+.sex{
+    text-align: right;
+}
+
 .sex img
 {
     width: 45px;
@@ -59,3 +63,4 @@ card.recomendations
 {
     transform: scale(2,2);
 }
+

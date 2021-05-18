@@ -2,6 +2,11 @@ html,body{
   height: 100%;
 }
 
+body{
+  background: url('../pictures/MainBG.jpg') no-repeat fixed center;
+  background-size: cover;
+}
+
 .page{
   min-height: 100%;
   height: auto !important;

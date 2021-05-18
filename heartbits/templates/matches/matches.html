@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
 Recomendations
 {% endblock %}
-{% load static %}
+
+{% block links %}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/recomends.css' %}">
+{% endblock %}
+
 {% block content %}
 <h1 class="recomendstitle">
     Рекомендации
@@ -13,19 +19,19 @@ Recomendations
     <div class="card-header">
         <div class="row">
             <div class="col-md-6">
-                {{ user.username }}
+                {{ user.username }} ({{ user.calculate_age }} годиков)
             </div>
             {% if 'M' in user.sex %}
-            <div class="col-md-6 sex" style="text-align: right;">
+            <div class="sex col-md-6">
                 <img class="gender" title="Мужчина" src="{% static 'pictures/man.png' %}">
             </div>
             {% elif 'W' in user.sex %}
-            <div class="col-md-6 sex" style="text-align: right;">
+            <div class="sex col-md-6">
                 <img class="gender" title="Женщина" src="{% static 'pictures/woman.png' %}">
 
             </div>
             {% elif 'ND' in user.sex %}
-            <div class="col-md-6 sex" style="text-align: right;">
+            <div class="sex col-md-6">
                 <img class="gender" title="Не определен" src="{% static 'pictures/gender.png' %}">
             </div>
             {% endif %}
@@ -46,14 +52,10 @@ Recomendations
                                 {{ user.user_description }}
                             </div>
                             <div class="card__face card__face--back">
-                                Email:{{ user.email }}
-                                Email:{{ user.email }}
-                                Email:{{ user.email }}
-                                Email:{{ user.email }}
-                                Email:{{ user.email }}
-                                Email:{{ user.email }}
-                                Email:{{ user.email }}
-                                Email:{{ user.email }}
+                                {{ user.last_name }} {{ user.first_name }}<br>
+                                День рождения: {{ user.birthday }}<br>
+                                Почта: {{ user.email }}<br>
+                                Живёт: {{ user.user_country }}, {{ user.user_city }}
                             </div>
                         </div>
                     </div>

@@ -1,17 +1,110 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
     UserUpdate
 {% endblock %}
+
+{% block links %}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/updateform.css' %}">
+{% endblock %}
+
 {% block content %}
-<h1 class="updateformtitle">
-    Изменение данных
-</h1>
-    <form id="updateinfoform" method="post" action="{% url 'user_update' slug=user.user_url %}" enctype="multipart/form-data">
+    <h1 class="updateformtitle">
+        Изменение данных
+    </h1>
+    <form id="updateinfoform" method="post" action="{% url 'user_update' slug=user.user_url %}"
+          enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+
+                <div class="fieldWrapper">
+                    {{ form.username.errors }}
+                    <label for="{{ form.username.id_for_label }}">Логин</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.first_name.errors }}
+                    <label for="{{ form.first_name.id_for_label }}">Имя</label>
+                    {{ form.first_name }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.last_name.errors }}
+                    <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                    {{ form.last_name }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.email.errors }}
+                    <label for="{{ form.email.id_for_label }}">Почта</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.birthday.errors }}
+                    <label for="{{ form.birthday.id_for_label }}">День рождения</label>
+                    {{ form.birthday }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.user_url.errors }}
+                    <label for="{{ form.user_url.id_for_label }}">URL пользователя</label>
+                    {{ form.user_url }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.sex.errors }}
+                    <label for="{{ form.sex.id_for_label }}">Пол</label>
+                    {{ form.sex }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.partner_sex.errors }}
+                    <label for="{{ form.partner_sex.id_for_label }}">Пол партнера</label>
+                    {{ form.partner_sex }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.partner_max_age.errors }}
+                    <label for="{{ form.partner_max_age.id_for_label }}">Максимальный возраст партнера</label>
+                    {{ form.partner_max_age }}
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-12">
+                <div class="fieldWrapper">
+                    {{ form.user_country.errors }}
+                    <label for="{{ form.user_country.id_for_label }}">Страна</label>
+                    {{ form.user_country }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.user_city.errors }}
+                    <label for="{{ form.user_city.id_for_label }}">Город</label>
+                    {{ form.user_city }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.user_description.errors }}
+                    <label for="{{ form.user_description.id_for_label }}">Описание</label>
+                    {{ form.user_description }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.user_image.errors }}
+                    <label for="{{ form.user_image.id_for_label }}">Аватарка</label>
+                    {{ form.user_image }}
+                </div>
+            </div>
+        </div>
+
         <input type="submit" value="Изменить">
     </form>
-    <form action="{% url 'password_change' slug=user.user_url %}" method="post">
+    <form id="passwordupdateform" action="{% url 'password_change' slug=user.user_url %}" method="post">
         {% csrf_token %}
         {{ pw_form.as_p }}
         <input type="submit" value="Изменить">

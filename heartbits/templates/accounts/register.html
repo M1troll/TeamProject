@@ -1,7 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block title %}
     Register
 {% endblock %}
+
+{% block links %}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/regform.css' %}">
+{% endblock %}
+
 {% block content %}
     <h1 class="regtitle">
     Регистрация

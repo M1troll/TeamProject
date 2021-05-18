@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/tests.css' %}">
+{% endblock %}
+
+
 {% block content %}
 
     <div class="question card mt-5">
