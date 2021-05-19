@@ -8,9 +8,11 @@ import json
 # Create your views here.
 answers = {}
 
+
 @login_required(login_url='login')
 def test_render(request):
-    if not Test.objects.get(user_id=request.user.pk).result:
+    test = Test.objects.get(user_id=request.user.pk)
+    if not test.result or len(test.result) != len(test.test_questions.all()):
         if request.method == 'GET':
             question = Question.objects.first()
             return render(request, 'comp_test/comp_test.html', context={'question': question})
@@ -21,12 +23,15 @@ def test_render(request):
 def test_ajax(request, pk):
     if request.method == 'POST':
         test = Test.objects.get(user=request.user.pk)
+        if not test.result:
+            test.result = {}
         current_question = test.test_questions.get(pk=pk)
         if 'answer' in request.POST:
             data = request.POST['answer']
             next_question = Question.objects.filter(id__gt=current_question.id).order_by('id').first()
             if next_question is not None:
-                answers[current_question.id.__str__()] = Answer.objects.get(pk=data).weight
+                test.result[current_question.id.__str__()] = Answer.objects.get(pk=data).weight
+                test.save()
                 html_response = '<p class="card-header text-center">' + next_question.title \
                                 + '</p>' + '<p class="card-title">' + next_question.description + '</p>' + \
                                 '<div class="card-body"><form id="test-form" data-question-id="' + str(next_question.id) + '">' + \
@@ -41,7 +46,6 @@ def test_ajax(request, pk):
                     'question_html': html_response
                 }
                 return JsonResponse(response)
-            test.result = answers
             test.save()
             response = {
                 'redirect_url': '/%s/matches' % User.objects.get(pk=request.user.pk).user_url
