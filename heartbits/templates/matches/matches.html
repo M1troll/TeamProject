@@ -10,7 +10,6 @@
 {% endblock %}
 
 {% block content %}
-    <<<<<<< HEAD
     <h1 class="recomendstitle">
         Рекомендации
     </h1>
@@ -59,14 +58,14 @@
                                         Живёт: {{ user.user_country }}, {{ user.user_city }}
                                     </div>
                                 </div>
-                                <form class="like-form" id="{{ user.pk }}">
+                            </div>
+                            <form class="like-form" id="{{ user.pk }}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn">
                                         <i class="fa fa-thumbs-o-up"></i>
                                         <span id="likes" class="text-dark">{{ user.get_user_likes }}</span>
                                     </button>
                                 </form>
-                            </div>
                         </div>
                     </div>
                 </div>
