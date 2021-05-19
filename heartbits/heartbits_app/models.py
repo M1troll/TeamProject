@@ -30,9 +30,6 @@ class UserRating(models.Model):
     id_user_liked = models.ForeignKey('User', verbose_name='Кто поставил', related_name='user_liked',
                                       on_delete=models.CASCADE, default=-1)
 
-    # def __str__(self):
-    #     return '%s' % self.count_likes()
-
     class Meta:
         unique_together = ('user', 'id_user_liked')
         verbose_name = 'Рейтинг'
@@ -51,18 +48,13 @@ class User(AbstractUser):
     user_country = models.CharField('Страна', max_length=100)
     user_city = models.CharField('Город', max_length=100)
     user_description = models.TextField('Описание', max_length=5000)
-    user_image = models.ImageField('Изображение', upload_to='user_photos/', blank=True, default='user_photos/default_user.jpg')
+    user_image = models.ImageField('Изображение', upload_to='user_photos/', blank=True, default='default_user.jpg')
     date_joined = models.DateField('Дата регистрации', auto_now_add=True)
     last_login = models.DateTimeField('Заходил последний раз', auto_now_add=True, null=True)
-    is_blocked = models.BooleanField('Заблокирован', default=False)
     coefficient = models.FloatField('Коэффициент', default=0.0)
     partner_sex = models.CharField('Пол партнера', choices=SEX, max_length=2, default=SEX[2])
     partner_max_age = models.PositiveSmallIntegerField('Максимальный возраст партнера', default=18)
     user_url = models.SlugField('URL пользователя', max_length=160, unique=True)
-    coef_range_min = models.FloatField('Нижняя граница поиска', default=0.0)
-    coef_range_max = models.FloatField('Верхняя граница поиска', default=0.0)
-    status = models.CharField('Статус', choices=STATUS, max_length=5, null=False)
-    display_status = models.BooleanField('Отображение статуса', default=True)
 
     def get_absolute_url(self):
         return reverse("user_update", kwargs={"slug": self.user_url})
@@ -70,6 +62,10 @@ class User(AbstractUser):
     def calculate_age(self):
         today = date.today()
         return today.year - self.birthday.year - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
+
+    def get_user_likes(self):
+        likes = UserRating.objects.filter(user=self.id)
+        return len(likes)
 
     @classmethod
     def __dist_cosin(cls, vec_a, vec_b):
